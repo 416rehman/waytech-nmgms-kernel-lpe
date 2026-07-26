@@ -44,7 +44,7 @@ wrong: it named `\\.\nmgms`, which fails on a machine without the mouse; the
 
 ## What was demonstrated on the VM
 
-On Windows 11 Pro build 26100.8875, x64, code integrity enforced and test signing
+On Windows 11 Pro 25H2 (build 26200.8875), x64, code integrity enforced and test signing
 off (both confirmed with `bcdedit`), the driver installed from its own catalog
 package and loaded (`sc start` succeeded under enforced signing). Everything below
 was then run from the standard account `dzuser` (group `Users` only, Medium

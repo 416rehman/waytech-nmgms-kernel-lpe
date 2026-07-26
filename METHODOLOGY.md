@@ -47,7 +47,7 @@ verified on the VM.
    control and the address disclosure are each real and each confirmed; combining
    them into code execution requires a kernel-base leak from another driver.
 
-Testing was on Windows 11 build 26100.8875 with code integrity enforced and test
+Testing was on Windows 11 25H2 (build 26200.8875) with code integrity enforced and test
 signing off, both confirmed with `bcdedit`. The driver was installed from its own
 catalog-signed package (`nmgms.inf` with `nmgms64.cat`) and loaded under enforced
 signing, and the account used (`dzuser`) is in the `Users` group only, at Medium
