@@ -1,0 +1,90 @@
+;Copyright (c) 2009  Waytech Development, Inc. All Rights Reserved.
+;
+
+[Version]
+Signature   = "$Windows NT$"
+CatalogFile = nmgms64.cat
+Class       = HIDClass
+ClassGUID   = {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider    = %WAYTECH%
+DriverVer   = 06/07/2009,1.00
+
+[SourceDisksNames]
+99 = %DiskName%,,
+
+[SourceDisksFiles]
+nmgms.sys = 99
+
+[DestinationDirs]
+CopyFilesUSB = 10,system32\drivers
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%StdMfg% = Standard,NTamd64
+
+[Standard.NTamd64]
+%nmgms.DeviceDesc01% = nmgms_Inst,USB\VID_04d9&PID_A04A&MI_01
+
+;-----------------------------------------------------------------
+[nmgms_Inst.NTamd64]
+Include   = input.inf
+CopyFiles = CopyFilesUSB, HID_Inst.Copyfiles.NT
+
+[nmgms_Inst.NTamd64.HW]
+AddReg = Filter.AddReg.HW
+
+[nmgms_Inst.NTamd64.Services]
+AddService = HidUsb,%SPSVCINST_ASSOCSERVICE%,HIDUSB_Service_Inst
+AddService = nmgmsFltr,,nmgmsFltr_Service_Inst
+
+[CopyFilesUSB]
+nmgms.sys
+
+[Filter.AddReg.HW]
+HKR,,"LowerFilters",0x00010000,"nmgmsFltr"
+HKR,,"VendorSpooge",0x00010000,"Cisforcookie"
+HKR,,"WaitWakeEnabled",0x00010001,0x1
+
+[nmgmsFltr_Service_Inst]
+DisplayName     = %SvcDispName%
+ServiceType     = %SERVICE_KERNEL_DRIVER%
+StartType       = %SERVICE_DEMAND_START%
+ErrorControl    = %SERVICE_ERROR_IGNORE%
+ServiceBinary   = %10%\system32\drivers\nmgms.sys
+LoadOrderGroup  = Extended Base
+
+[HIDUSB_Service_Inst]
+DisplayName    = %HID.SvcDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_AUTO_START%
+ErrorControl   = %SERVICE_ERROR_IGNORE%
+ServiceBinary  = %10%\system32\drivers\hidusb.sys
+LoadOrderGroup = extended base
+
+;-----------------------------------------------------------------
+[Strings]
+
+WAYTECH		      = "Fuyeda"
+DiskName          = "Driver Disk"
+nmgms.DeviceDesc00      = "USB Gaming Mouse"
+nmgms.DeviceDesc01      = "USB Gaming Mouse"
+HID.DefaultDevice     = "HID default device"
+HID.ClassName         = "Human Interface Devices"
+HID.SvcDesc           = "HID Class Driver"
+StdMfg                = "Fuyeda"
+SvcDispName           = "USB Gaming Mouse"
+
+SPSVCINST_TAGTOFRONT  = 0x00000001
+SPSVCINST_ASSOCSERVICE= 0x00000002
+SERVICE_KERNEL_DRIVER = 1
+SERVICE_BOOT_START    = 0
+SERVICE_SYSTEM_START  = 1
+SERVICE_AUTO_START    = 0x00000003
+SERVICE_DEMAND_START  = 3
+SERVICE_ERROR_NORMAL  = 1
+SERVICE_ERROR_IGNORE  = 0
+REG_EXPAND_SZ         = 0x00020000
+REG_DWORD             = 0x00010001
+REG_SZ                = 0x00000000

