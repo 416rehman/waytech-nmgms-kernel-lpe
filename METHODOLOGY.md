@@ -40,8 +40,7 @@ verified on the VM.
    a bug check with that value as the faulting instruction address and
    `AV.Type: Execute`.
 
-6. **Weaponisation was scoped honestly.** Unlike the Lycosa and Protype findings,
-   this driver's disclosure returns its own image base and a pool object but not the
+6. **Weaponisation was scoped honestly.** This driver's disclosure returns its own image base and a pool object but not the
    base of `ntoskrnl.exe`, and it has no arbitrary-read primitive and no outbound
    copy of its stack, so the kernel base cannot be recovered from `nmgms.sys` alone
    and a self-contained `ZwCreateFile` chain was not built. The instruction-pointer

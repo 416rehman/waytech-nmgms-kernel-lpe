@@ -71,8 +71,7 @@ gadgets and for `nt!ZwCreateFile`. This driver's disclosure returns its own imag
 base and a kernel pool object, not the kernel base, and it has no arbitrary-read
 primitive and no outbound copy of its stack, so the kernel base cannot be recovered
 from `nmgms.sys` alone. Reliable code execution therefore pairs CVE-02 with a
-kernel-base disclosure from any driver that offers one (for example the Lycosa
-finding in this set). Both defects here are independently real and independently
+kernel-base disclosure from any driver that offers one. Both defects here are independently real and independently
 confirmed; the pairing note concerns weaponisation, not whether the defects exist.
 
 ## Contents
