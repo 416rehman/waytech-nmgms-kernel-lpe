@@ -1,5 +1,7 @@
 # nmgms.sys (Waytech / NMgaming mouse) - two kernel defects reachable by any user
 
+Discovered through https://github.com/416rehman/DeepZero
+
 `nmgms.sys` is the filter driver in Waytech's NMgaming mouse package. It creates a
 control device that any logged-in account can open, and that device exposes two
 distinct defects, both confirmed on a live Windows 11 machine by an unprivileged
